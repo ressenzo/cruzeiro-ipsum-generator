@@ -1,23 +1,67 @@
+import { useState } from 'react';
+import FormInterface from '../../interfaces/form.interface';
 import './Form.css';
 
-const Form = () => {
+const Form = ({
+    onSubmit,
+    onChangeQuantity
+}: FormInterface) => {
+
+    const [disabled, setDisabled] = useState<boolean>(true);
+    const [error, setError] = useState<string>('');
+
+    const onChangeHandle = (event: React.FormEvent<HTMLInputElement>) => {
+
+        setError('');
+        onChangeQuantity(0);
+
+        let value = event.currentTarget.value;
+        const regexOnlyNumbers = /^[0-9]+$/;
+        if (value !== '' && !regexOnlyNumbers.test(value)) {
+            setError('São permitidos apenas números');
+            setDisabled(true);
+            return;
+        }
+
+        let intValue = parseInt(value) || 0;
+        
+        if (intValue > 100) {
+            setDisabled(true);
+            setError('Número máximo de parágrafos é 100');            
+            return;
+        }
+        
+        setDisabled(false);
+        onChangeQuantity(intValue);
+    }
+
     return (
         <div className="row">
-            <div className="col">
-                <input
-                    type="text"
-                    className="form-control form__input-text"
-                    placeholder="Quantidade de parágrafos"
-                    title="Quantidade de parágrafos"
-                />
-            </div>
-            <div className="col">
-                <button
-                    className="btn form__btn-main"
-                >
-                    Gerar
-                </button>
-            </div>
+            <form onSubmit={onSubmit}>
+                <div className="row">
+                    <div className="col">
+                        <input
+                            type="text"
+                            className="form-control form__input-text"
+                            placeholder="Quantidade de parágrafos"
+                            title="Quantidade de parágrafos"
+                            onChange={ev => onChangeHandle(ev)}
+                            maxLength={3}
+                        />
+                        {
+                            error
+                        }
+                    </div>
+                    <div className="col">
+                        <button
+                            className="btn form__btn-main"
+                            disabled={disabled}
+                        >
+                            Gerar
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
     );
 }

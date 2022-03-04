@@ -1,6 +1,7 @@
 import { FormEvent, useRef, useState } from "react";
 import Button from "./components/Button/Button";
 import Form from "./components/Form/Form";
+import ResultContainer from "./components/ResultContainer/ResultContainer";
 import { CRUZEIRO_WORDS } from "./words/cruzeiro-words";
 import { IPSUM_WORDS } from "./words/ipsum-words";
 
@@ -16,7 +17,7 @@ const App = () => {
   const [result, setResult] = useState<string[]>([]);
   const [showButton, setShowButton] = useState<boolean>(false);
 
-  const divTexto = useRef<HTMLDivElement>(null);
+  const textDiv = useRef<HTMLDivElement>(null);
 
   const generateIpsum = (e: FormEvent<HTMLFormElement>) => {
 
@@ -90,7 +91,7 @@ const App = () => {
   }
 
   const copyToClipboard = () => {
-    const text = divTexto.current?.innerText as string;
+    const text = textDiv.current?.innerText as string;
     navigator.clipboard.writeText(text);
   }
 
@@ -100,15 +101,12 @@ const App = () => {
         onSubmit={generateIpsum}
         onChangeQuantity={setParagraphQuantity}
       />
-      <div className="row" ref={divTexto}>
-        {
-          result.map((p, index) => {
-            return (
-              <p key={index}>{p}</p>
-            )
-          })
-        }
-      </div>
+      
+      <ResultContainer
+        result={result}
+        ref={textDiv}
+      />
+      
       <div className="row">
         {
           showButton ?

@@ -54,7 +54,7 @@ const Form = ({
                             maxLength={3}
                         />
                         {
-                            error
+                            <small className="text-danger">{error}</small>
                         }
                     </div>
                     <div className="col">

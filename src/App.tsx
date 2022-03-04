@@ -1,5 +1,6 @@
 import { FormEvent, useState } from "react";
 import Form from "./components/Form/Form";
+import { CRUZEIRO_WORDS } from "./words/cruzeiro-words";
 import { IPSUM_WORDS } from "./words/ipsum-words";
 
 const MIN_PHRASES_PER_PARAGRAPH = 6;
@@ -44,6 +45,7 @@ const App = () => {
     let phrase = '';
 
     phrase += getIpsumWords(true);
+    phrase += getCruzeiroWord();
     phrase += getIpsumWords(false);
 
     return phrase;
@@ -68,6 +70,14 @@ const App = () => {
     }
 
     return phrase;
+  }
+
+  const getCruzeiroWord = () => {
+    
+    const cruzeiroSize = CRUZEIRO_WORDS.length;
+    const cruzeiroWordIndex = getRandom(0, cruzeiroSize);
+    const cruzeiroWord = CRUZEIRO_WORDS[cruzeiroWordIndex];
+    return `${cruzeiroWord} `;
   }
 
   const getRandom = (min: number, max: number) => {

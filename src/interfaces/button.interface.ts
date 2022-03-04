@@ -3,4 +3,5 @@ export default interface ButtonInterface {
     type: "button" | "submit" | "reset" | undefined
     disabled: boolean
     classNames: string
+    onClick?: () => void
 }

@@ -59,6 +59,7 @@ const Form = ({
                             disabled={disabled}
                             type="submit"
                             text="Gerar"
+                            onClick={undefined}
                         />
                     </div>
                 </div>

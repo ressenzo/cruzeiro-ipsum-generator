@@ -5,9 +5,20 @@ const Button = ({
     classNames,
     disabled,
     text,
-    type
+    type,
+    onClick
 }: ButtonInterface) => {
     return (
+        
+        onClick !== undefined ?
+        <button
+            className={classNames}
+            disabled={disabled}
+            type={type}
+            onClick={onClick}
+        >
+            {text}
+        </button> :
         <button
             className={classNames}
             disabled={disabled}

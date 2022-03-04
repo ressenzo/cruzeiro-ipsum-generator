@@ -1,4 +1,5 @@
 import { FormEvent, useRef, useState } from "react";
+import Button from "./components/Button/Button";
 import Form from "./components/Form/Form";
 import { CRUZEIRO_WORDS } from "./words/cruzeiro-words";
 import { IPSUM_WORDS } from "./words/ipsum-words";
@@ -107,13 +108,13 @@ const App = () => {
         }
       </div>
       <div className="row">
-        <button
+        <Button
           type="button"
-          className="btn btn-primary"
+          classNames="btn button__btn-main"
           onClick={copyToClipboard}
-        >
-          Copiar
-        </button>
+          text="Copiar"
+          disabled={false}
+        />
       </div>
     </div>
   )

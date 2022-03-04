@@ -1,7 +1,11 @@
-import { useState } from 'react';
-import FormInterface from '../../interfaces/form.interface';
+import { FormEvent, useState } from 'react';
 import Button from '../Button/Button';
 import './Form.css';
+
+interface FormInterface {
+    onSubmit: (e: FormEvent<HTMLFormElement>) => void
+    onChangeQuantity: any
+}
 
 const Form = ({
     onSubmit,

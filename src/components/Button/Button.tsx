@@ -1,5 +1,12 @@
-import ButtonInterface from "../../interfaces/button.interface";
 import './Button.css';
+
+interface ButtonInterface {
+    text: string
+    type: "button" | "submit" | "reset" | undefined
+    disabled: boolean
+    classNames: string
+    onClick?: () => void
+}
 
 const Button = ({
     classNames,

@@ -57,8 +57,8 @@ const App = () => {
     
     let phrase = '';
     const ipsumSize = IPSUM_WORDS.length;
-    const number = isBefore ? MAX_WORDS_BEFORE_CRUZEIRO_WORD : MAX_WORDS_AFTER_CRUZEIRO_WORD;
-    const numberOfWords = getRandom(1, number);
+    const maxNumber = isBefore ? MAX_WORDS_BEFORE_CRUZEIRO_WORD : MAX_WORDS_AFTER_CRUZEIRO_WORD;
+    const numberOfWords = getRandom(1, maxNumber);
 
     for (let index = 0; index < numberOfWords; index++) {
       const ipsumWordIndex = getRandom(0, ipsumSize);

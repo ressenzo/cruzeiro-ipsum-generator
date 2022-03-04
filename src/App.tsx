@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 import Form from "./components/Form/Form";
 import { CRUZEIRO_WORDS } from "./words/cruzeiro-words";
 import { IPSUM_WORDS } from "./words/ipsum-words";
@@ -13,6 +13,8 @@ const App = () => {
 
   const [paragraphQuantity, setParagraphQuantity] = useState<number>(0);
   const [result, setResult] = useState<string[]>([]);
+
+  const divTexto = useRef<HTMLDivElement>(null);
 
   const generateIpsum = (e: FormEvent<HTMLFormElement>) => {
 
@@ -84,13 +86,18 @@ const App = () => {
     return Math.floor(Math.random() * (max - min)) + min;
   }
 
+  const copyToClipboard = () => {
+    const text = divTexto.current?.innerText as string;
+    navigator.clipboard.writeText(text);
+  }
+
   return (
     <div className="container">
       <Form
         onSubmit={generateIpsum}
         onChangeQuantity={setParagraphQuantity}
       />
-      <div className="row">
+      <div className="row" ref={divTexto}>
         {
           result.map((p, index) => {
             return (
@@ -98,6 +105,15 @@ const App = () => {
             )
           })
         }
+      </div>
+      <div className="row">
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={copyToClipboard}
+        >
+          Copiar
+        </button>
       </div>
     </div>
   )

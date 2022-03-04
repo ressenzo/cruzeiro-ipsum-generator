@@ -1,6 +1,9 @@
 import { FormEvent, useState } from "react";
 import Form from "./components/Form/Form";
 
+const MIN_PHRASES_PER_PARAGRAPH = 6;
+const MAX_PHRASES_PER_PARAGRAPH = 9;
+
 const App = () => {
 
   const [paragraphQuantity, setParagraphQuantity] = useState<number>(0);
@@ -21,7 +24,19 @@ const App = () => {
 
   const generateParagraph = () => {
 
-    return 'test paragraph'
+    let paragraph = '';
+    const phrasesPerParagraph = getRandom(MIN_PHRASES_PER_PARAGRAPH, MAX_PHRASES_PER_PARAGRAPH);
+
+    for (let index = 0; index < phrasesPerParagraph; index++) {
+      const phrase = 'new phrase';
+      paragraph += phrase;
+    }
+
+    return paragraph;
+  }
+
+  const getRandom = (min: number, max: number) => {
+    return Math.floor(Math.random() * (max - min)) + min;
   }
 
   return (

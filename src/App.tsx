@@ -9,7 +9,19 @@ const App = () => {
   const generateIpsum = (e: FormEvent<HTMLFormElement>) => {
 
     e.preventDefault();
-    setResult(['teste'])
+    const finalText = new Array<string>();
+
+    for (let paragraphs = 0; paragraphs < paragraphQuantity; paragraphs++) {
+      let paragraph = generateParagraph();
+      finalText.push(paragraph.trim());
+    }
+
+    setResult(finalText)
+  }
+
+  const generateParagraph = () => {
+
+    return 'test paragraph'
   }
 
   return (

@@ -31,7 +31,7 @@ const Form = ({
             return;
         }
         
-        setDisabled(false);
+        setDisabled(intValue === 0);
         onChangeQuantity(intValue);
     }
 

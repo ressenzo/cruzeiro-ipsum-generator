@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import FormInterface from '../../interfaces/form.interface';
+import Button from '../Button/Button';
 import './Form.css';
 
 const Form = ({
@@ -53,12 +54,12 @@ const Form = ({
                         }
                     </div>
                     <div className="col">
-                        <button
-                            className="btn form__btn-main"
+                        <Button
+                            classNames="btn button__btn-main"
                             disabled={disabled}
-                        >
-                            Gerar
-                        </button>
+                            type="submit"
+                            text="Gerar"
+                        />
                     </div>
                 </div>
             </form>

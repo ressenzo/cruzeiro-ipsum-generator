@@ -7,14 +7,3 @@
     box-shadow: none;
     border-color: rgba(30, 61, 143);
 }
-
-.form__btn-main {
-    background-color: #1E3D8F;
-    color: #FFF;
-}
-
-.form__btn-main:hover {
-    opacity: .8;
-    color: #FFF;
-    background-color: #1E3D8F;
-}

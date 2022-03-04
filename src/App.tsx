@@ -14,6 +14,7 @@ const App = () => {
 
   const [paragraphQuantity, setParagraphQuantity] = useState<number>(0);
   const [result, setResult] = useState<string[]>([]);
+  const [showButton, setShowButton] = useState<boolean>(false);
 
   const divTexto = useRef<HTMLDivElement>(null);
 
@@ -27,7 +28,8 @@ const App = () => {
       finalText.push(paragraph.trim());
     }
 
-    setResult(finalText)
+    setResult(finalText);
+    setShowButton(true);
   }
 
   const generateParagraph = () => {
@@ -108,13 +110,17 @@ const App = () => {
         }
       </div>
       <div className="row">
-        <Button
-          type="button"
-          classNames="btn button__btn-main"
-          onClick={copyToClipboard}
-          text="Copiar"
-          disabled={false}
-        />
+        {
+          showButton ?
+          <Button
+            type="button"
+            classNames="btn button__btn-main"
+            onClick={copyToClipboard}
+            text="Copiar"
+            disabled={false}
+          /> :
+          null
+        }
       </div>
     </div>
   )

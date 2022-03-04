@@ -1,4 +1,5 @@
 import { forwardRef, LegacyRef } from "react";
+import './ResultContainer.css';
 
 interface ResultContainerInterface {
     result: string[]
@@ -6,7 +7,7 @@ interface ResultContainerInterface {
 
 const ResultContainer = forwardRef(({ result }: ResultContainerInterface, ref) => {
     return (
-        <div className="row" ref={ref as LegacyRef<HTMLDivElement>}>
+        <div className="row result-container" ref={ref as LegacyRef<HTMLDivElement>}>
             {
                 result.map((p, index) => {
                     return (

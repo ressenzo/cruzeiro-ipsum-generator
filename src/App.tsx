@@ -1,8 +1,12 @@
 import { FormEvent, useState } from "react";
 import Form from "./components/Form/Form";
+import { IPSUM_WORDS } from "./words/ipsum-words";
 
 const MIN_PHRASES_PER_PARAGRAPH = 6;
 const MAX_PHRASES_PER_PARAGRAPH = 9;
+
+const MAX_WORDS_BEFORE_CRUZEIRO_WORD = 6;
+const MAX_WORDS_AFTER_CRUZEIRO_WORD = 5;
 
 const App = () => {
 
@@ -28,11 +32,42 @@ const App = () => {
     const phrasesPerParagraph = getRandom(MIN_PHRASES_PER_PARAGRAPH, MAX_PHRASES_PER_PARAGRAPH);
 
     for (let index = 0; index < phrasesPerParagraph; index++) {
-      const phrase = 'new phrase';
+      const phrase = generatePhrase();
       paragraph += phrase;
     }
 
     return paragraph;
+  }
+
+  const generatePhrase = () => {
+
+    let phrase = '';
+
+    phrase += getIpsumWords(true);
+    phrase += getIpsumWords(false);
+
+    return phrase;
+  }
+
+  const getIpsumWords = (isBefore: boolean) => {
+    
+    let phrase = '';
+    const ipsumSize = IPSUM_WORDS.length;
+    const number = isBefore ? MAX_WORDS_BEFORE_CRUZEIRO_WORD : MAX_WORDS_AFTER_CRUZEIRO_WORD;
+    const numberOfWords = getRandom(1, number);
+
+    for (let index = 0; index < numberOfWords; index++) {
+      const ipsumWordIndex = getRandom(0, ipsumSize);
+      const ipsumWord = IPSUM_WORDS[ipsumWordIndex];
+      
+      if (isBefore) {
+        phrase += index === 0 ? `${ipsumWord.charAt(0).toUpperCase() + ipsumWord.slice(1)} ` : `${ipsumWord} `;
+      } else {
+        phrase += index === numberOfWords - 1 ? `${ipsumWord}. ` : `${ipsumWord} `;
+      }
+    }
+
+    return phrase;
   }
 
   const getRandom = (min: number, max: number) => {

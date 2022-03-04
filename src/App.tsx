@@ -4,18 +4,29 @@ import Form from "./components/Form/Form";
 const App = () => {
 
   const [paragraphQuantity, setParagraphQuantity] = useState<number>(0);
+  const [result, setResult] = useState<string[]>([]);
 
   const generateIpsum = (e: FormEvent<HTMLFormElement>) => {
+
     e.preventDefault();
-    console.log(paragraphQuantity)
+    setResult(['teste'])
   }
 
   return (
     <div className="container">
       <Form
         onSubmit={generateIpsum}
-        onChangeQuantity={setParagraphQuantity}        
+        onChangeQuantity={setParagraphQuantity}
       />
+      <div className="row">
+        {
+          result.map((p, index) => {
+            return (
+              <p key={index}>{p}</p>
+            )
+          })
+        }
+      </div>
     </div>
   )
 }

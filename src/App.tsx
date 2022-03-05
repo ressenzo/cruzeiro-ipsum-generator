@@ -1,6 +1,7 @@
 import { FormEvent, useRef, useState } from "react";
 import Button from "./components/Button/Button";
 import Form from "./components/Form/Form";
+import Header from "./components/Header/Header";
 import ResultContainer from "./components/ResultContainer/ResultContainer";
 import { CRUZEIRO_WORDS } from "./words/cruzeiro-words";
 import { IPSUM_WORDS } from "./words/ipsum-words";
@@ -58,7 +59,7 @@ const App = () => {
   }
 
   const getIpsumWords = (isBefore: boolean) => {
-    
+
     let phrase = '';
     const ipsumSize = IPSUM_WORDS.length;
     const maxNumber = isBefore ? MAX_WORDS_BEFORE_CRUZEIRO_WORD : MAX_WORDS_AFTER_CRUZEIRO_WORD;
@@ -67,7 +68,7 @@ const App = () => {
     for (let index = 0; index < numberOfWords; index++) {
       const ipsumWordIndex = getRandom(0, ipsumSize);
       const ipsumWord = IPSUM_WORDS[ipsumWordIndex];
-      
+
       if (isBefore) {
         phrase += index === 0 ? `${ipsumWord.charAt(0).toUpperCase() + ipsumWord.slice(1)} ` : `${ipsumWord} `;
       } else {
@@ -79,7 +80,7 @@ const App = () => {
   }
 
   const getCruzeiroWord = () => {
-    
+
     const cruzeiroSize = CRUZEIRO_WORDS.length;
     const cruzeiroWordIndex = getRandom(0, cruzeiroSize);
     const cruzeiroWord = CRUZEIRO_WORDS[cruzeiroWordIndex];
@@ -96,31 +97,35 @@ const App = () => {
   }
 
   return (
-    <div className="container">
-      <Form
-        onSubmit={generateIpsum}
-        onChangeQuantity={setParagraphQuantity}
-      />
-      
-      <ResultContainer
-        result={result}
-        ref={textDiv}
-      />
-      
-      <div className="row">
-        {
-          showButton ?
-          <Button
-            type="button"
-            classNames="btn button__btn-main"
-            onClick={copyToClipboard}
-            text="Copiar"
-            disabled={false}
-          /> :
-          null
-        }
-      </div>
-    </div>
+    <>
+      <Header />
+
+      <div className="container mt-5">
+        <Form
+          onSubmit={generateIpsum}
+          onChangeQuantity={setParagraphQuantity}
+        />
+
+        <ResultContainer
+          result={result}
+          ref={textDiv}
+        />
+
+        <div className="row">
+          {
+            showButton ?
+              <Button
+                type="button"
+                classNames="btn button__btn-main"
+                onClick={copyToClipboard}
+                text="Copiar"
+                disabled={false}
+              /> :
+              null
+          }
+          </div>
+        </div>
+    </>
   )
 }
 

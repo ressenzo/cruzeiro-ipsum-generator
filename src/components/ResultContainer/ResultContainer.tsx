@@ -7,6 +7,7 @@ interface ResultContainerInterface {
 
 const ResultContainer = forwardRef(({ result }: ResultContainerInterface, ref) => {
     return (
+        result.length > 0 ?
         <div className="row result-container" ref={ref as LegacyRef<HTMLDivElement>}>
             {
                 result.map((p, index) => {
@@ -15,7 +16,8 @@ const ResultContainer = forwardRef(({ result }: ResultContainerInterface, ref) =
                     )
                 })
             }
-        </div>
+        </div>:
+        null
     );
 })
 

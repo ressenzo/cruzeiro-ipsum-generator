@@ -1,4 +1,9 @@
 .result-container {
     max-height: 500px;
     overflow: auto;
+    border: 1px solid #D0D0D0;
+    border-radius: 3px;
+    padding: 20px;
+    margin-left: 0px;
+    margin-right: 0px;
 }

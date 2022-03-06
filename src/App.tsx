@@ -111,20 +111,22 @@ const App = () => {
           ref={textDiv}
         />
 
-        <div className="row">
-          {
-            showButton ?
-              <Button
-                type="button"
-                classNames="btn button__btn-main"
-                onClick={copyToClipboard}
-                text="Copiar"
-                disabled={false}
-              /> :
-              null
-          }
+        <div className="row mt-4">
+          <div className="col">
+            {
+              showButton ?
+                <Button
+                  type="button"
+                  classNames="btn button__btn-main"
+                  onClick={copyToClipboard}
+                  text="Copiar"
+                  disabled={false}
+                /> :
+                null
+            }
           </div>
         </div>
+      </div>
     </>
   )
 }

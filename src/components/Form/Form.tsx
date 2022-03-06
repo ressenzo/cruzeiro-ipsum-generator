@@ -41,7 +41,7 @@ const Form = ({
     }
 
     return (
-        <div className="row mb-5">
+        <div className="row mb-4">
             <form onSubmit={onSubmit}>
                 <div className="row">
                     <div className="col">

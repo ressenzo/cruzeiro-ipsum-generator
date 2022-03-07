@@ -1,5 +1,6 @@
 import { FormEvent, useEffect, useRef, useState } from "react";
 import Button from "./components/Button/Button";
+import Footer from "./components/Footer/Footer";
 import Form from "./components/Form/Form";
 import Header from "./components/Header/Header";
 import ResultContainer from "./components/ResultContainer/ResultContainer";
@@ -136,18 +137,7 @@ const App = () => {
         </div>
       </main>
 
-      <footer className="py-3 mt-5 text-end" style={{
-        backgroundColor: "#D0D0D0",
-        position: 'absolute',
-        width: '100%',
-        bottom: 0
-      }}>
-        <div className="container">
-          <div className="col">
-            Criado por <a href="https://github.com/ressenzo">Renan</a>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </>
   )
 }

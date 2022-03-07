@@ -5,12 +5,10 @@
 
 .button__btn-main:hover {
     color: #FFF;
-    /* background-color: #102764; */
     background-color: #1E3D8F;
     filter: brightness(86%)
 }
 
 .button__btn-main:focus {
-    /* box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 37%); */
     box-shadow: 0 0 0 0.25rem #D0D0D0;
 }

@@ -1,4 +1,4 @@
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import Button from "./components/Button/Button";
 import Form from "./components/Form/Form";
 import Header from "./components/Header/Header";
@@ -19,6 +19,12 @@ const App = () => {
   const [showButton, setShowButton] = useState<boolean>(false);
 
   const textDiv = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    document.body.style.position = 'relative';
+    document.body.style.minHeight = '100vh';
+    document.body.style.paddingBottom = '90px';
+  }, [])
 
   const generateIpsum = (e: FormEvent<HTMLFormElement>) => {
 
@@ -100,33 +106,48 @@ const App = () => {
     <>
       <Header />
 
-      <div className="container mt-5">
-        <Form
-          onSubmit={generateIpsum}
-          onChangeQuantity={setParagraphQuantity}
-        />
+      <main>
+        <div className="container mt-5">
+          <Form
+            onSubmit={generateIpsum}
+            onChangeQuantity={setParagraphQuantity}
+          />
 
-        <ResultContainer
-          result={result}
-          ref={textDiv}
-        />
+          <ResultContainer
+            result={result}
+            ref={textDiv}
+          />
 
-        <div className="row mt-4">
-          <div className="col">
-            {
-              showButton ?
-                <Button
-                  type="button"
-                  classNames="btn button__btn-main"
-                  onClick={copyToClipboard}
-                  text="Copiar"
-                  disabled={false}
-                /> :
-                null
-            }
+          <div className="row mt-4">
+            <div className="col">
+              {
+                showButton ?
+                  <Button
+                    type="button"
+                    classNames="btn button__btn-main"
+                    onClick={copyToClipboard}
+                    text="Copiar"
+                    disabled={false}
+                  /> :
+                  null
+              }
+            </div>
           </div>
         </div>
-      </div>
+      </main>
+
+      <footer className="py-3 mt-5 text-end" style={{
+        backgroundColor: "#D0D0D0",
+        position: 'absolute',
+        width: '100%',
+        bottom: 0
+      }}>
+        <div className="container">
+          <div className="col">
+            Criado por <a href="https://github.com/ressenzo">Renan</a>
+          </div>
+        </div>
+      </footer>
     </>
   )
 }

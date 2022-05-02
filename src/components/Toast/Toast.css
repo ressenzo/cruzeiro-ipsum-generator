@@ -1,0 +1,11 @@
+.toast {
+    bottom: 20px !important;
+    right: 20px !important;
+    background-color: rgba(255, 255, 255, 1);
+    z-index: 11;
+}
+
+.toast .toast-body span {
+    font-size: medium;
+    font-weight: 500;
+}

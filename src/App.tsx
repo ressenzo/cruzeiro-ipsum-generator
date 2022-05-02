@@ -4,6 +4,7 @@ import Footer from "./components/Footer/Footer";
 import Form from "./components/Form/Form";
 import Header from "./components/Header/Header";
 import ResultContainer from "./components/ResultContainer/ResultContainer";
+import Toast from "./components/Toast/Toast";
 import { CRUZEIRO_WORDS } from "./words/cruzeiro-words";
 import { IPSUM_WORDS } from "./words/ipsum-words";
 
@@ -20,6 +21,8 @@ const App = () => {
   const [showButton, setShowButton] = useState<boolean>(false);
 
   const textDiv = useRef<HTMLDivElement>(null);
+
+  const [showToast, setShowToast] = useState<boolean>(false);
 
   useEffect(() => {
     document.body.style.position = 'relative';
@@ -101,6 +104,13 @@ const App = () => {
   const copyToClipboard = () => {
     const text = textDiv.current?.innerText as string;
     navigator.clipboard.writeText(text);
+
+    showCopiedTextToast();
+  }
+
+  const showCopiedTextToast = () => {
+    setShowToast(true);
+    setTimeout(() => setShowToast(false), 4000);
   }
 
   return (
@@ -142,6 +152,11 @@ const App = () => {
           </div>
         </div>
       </main>
+
+      <Toast
+        text="Texto copiado"
+        show={showToast}
+      />
 
       <Footer />
     </>

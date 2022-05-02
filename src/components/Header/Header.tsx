@@ -1,6 +1,8 @@
+import './Header.css';
+
 const Header = () => {
     return (
-        <div style={{ backgroundColor: "#1E3D8F", color: "#FFF" }} className="p-5">
+        <div style={{ backgroundColor: "#1E3D8F", color: "#FFF" }} className="cruzeiro-header p-3">
             <div className="container-fluid py-5">
                 <h1 className="display-5 fw-bold">Cruzeiro ipsum</h1>
                 <p className="col-md-8 fs-4">

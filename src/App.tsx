@@ -109,6 +109,12 @@ const App = () => {
 
       <main>
         <div className="container mt-5">
+
+          <p>
+            Digite a quantidade de parágrafos desejados e clique no botão para gerar o texto. Em seguida,
+            basta copiar o conteúdo e utilizar!
+          </p>
+
           <Form
             onSubmit={generateIpsum}
             onChangeQuantity={setParagraphQuantity}

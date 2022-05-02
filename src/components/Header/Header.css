@@ -1,0 +1,5 @@
+@media only screen and (max-width: 576px) {
+    .cruzeiro-header {
+        padding: 0rem 2rem !important;
+    }
+}

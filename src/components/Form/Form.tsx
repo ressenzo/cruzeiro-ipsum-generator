@@ -44,7 +44,7 @@ const Form = ({
         <div className="row mb-4">
             <form onSubmit={onSubmit}>
                 <div className="row">
-                    <div className="col">
+                    <div className="col-sm-12 col-md-6 mb-3">
                         <input
                             type="text"
                             className="form-control form__input-text"

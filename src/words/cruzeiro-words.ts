@@ -1,5 +1,10 @@
 export const CRUZEIRO_WORDS = [
     'maior de minas',
     'cabuloso',
-    'tríplice coroa'
+    'tríplice coroa',
+    '6a1',
+    'cruzeiro',
+    'hexacampeão',
+    'tetracampeão',
+    'raposa'
 ]

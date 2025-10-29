@@ -1,0 +1,23 @@
+from services.generator_service import GeneratorService
+from services.constants import _CRUZEIRO_WORDS, _IPSUM_WORDS
+
+def test_return_empty_when_quantity_is_less_than_1():
+    gs = GeneratorService()
+    message = gs.generate_paragraphs(0)
+    assert message == "Paragraphs min len is 1"
+
+def test_return_error_when_quantity_is_greater_than_10():
+    gs = GeneratorService()
+    message = gs.generate_paragraphs(11)
+    assert message == "Paragraphs max len is 10"
+
+def test_return_paragraphs():
+    gs = GeneratorService()
+    paragraphs = gs.generate_paragraphs(2)
+    assert isinstance(paragraphs, list)
+    assert len(paragraphs) == 2
+    assert all(isinstance(p, str) for p in paragraphs)
+    assert all(len(p.strip()) for p in paragraphs)
+    assert any(word in _CRUZEIRO_WORDS for p in paragraphs for word in p.split())
+    assert any(word in _IPSUM_WORDS for p in paragraphs for word in p.split())
+    assert all("." in p for p in paragraphs)

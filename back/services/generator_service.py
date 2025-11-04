@@ -1,79 +1,87 @@
+"""GeneratorService"""
 from abc import ABC, abstractmethod
-import services.constants
 from random import randint
 
+from services.constants import Constants
+
+
+# pylint: disable=R0903
 class IGeneratorService(ABC):
+    """Contract of GeneratorService"""
     @abstractmethod
     def generate_paragraphs(self, quantity: int) -> list[str] | str:
-        pass
+        """Generates paragraphs based on quantity"""
 
+
+# pylint: disable=R0903
 class GeneratorService(IGeneratorService):
+    """Implementation of GeneratorService"""
+
     def generate_paragraphs(self, quantity: int) -> list[str] | str:
         if not isinstance(quantity, int):
-            return services.constants._QUANTITY_INVALID_TYPE_ERROR_MESSAGE
+            return Constants.QUANTITY_INVALID_TYPE_ERROR_MESSAGE
 
-        if quantity < services.constants._PARAGRAPHS_MIN_QUANTITY:
-            return services.constants._PARAGRAPHS_MIN_QUANTITY_ERROR_MESSAGE
-        
-        if quantity > services.constants._PARAGRAPHS_MAX_QUANTITY:
-            return services.constants._PARAGRAPHS_MAX_QUANTITY_ERROR_MESSAGE
-        
+        if quantity < Constants.PARAGRAPHS_MIN_QUANTITY:
+            return Constants.PARAGRAPHS_MIN_QUANTITY_ERROR_MESSAGE
+
+        if quantity > Constants.PARAGRAPHS_MAX_QUANTITY:
+            return Constants.PARAGRAPHS_MAX_QUANTITY_ERROR_MESSAGE
+
         paragraphs = []
         for _ in range(quantity):
-            paragraphs.append(self._generate_paragraph())
+            paragraphs.append(self.__generate_paragraph())
         return paragraphs
-    
-    def _generate_paragraph(self) -> str:
-        sentencesPerParagraph = randint(
-            services.constants._SENTENCES_MIN_QUANTITY,
-            services.constants._SENTENCES_MAX_QUANTITY
+
+    def __generate_paragraph(self) -> str:
+        sentences_per_paragraph = randint(
+            Constants.SENTENCES_MIN_QUANTITY,
+            Constants.SENTENCES_MAX_QUANTITY
         )
         paragraph = ""
-        for i in range(sentencesPerParagraph):
-            if i == sentencesPerParagraph-1:
+        for i in range(sentences_per_paragraph):
+            if i == sentences_per_paragraph-1:
                 paragraph += self.__generate_sentence() + ""
             else:
                 paragraph += self.__generate_sentence() + " "
         return paragraph
 
-    
     def __generate_sentence(self) -> str:
         sentence = ""
-        
-        ipsumWords = randint(
-            services.constants._WORDS_BEFORE_MIN_QUANTIY,
-            services.constants._WORDS_BEFORE_MAX_QUANTIY
+
+        ipsum_words = randint(
+            Constants.WORDS_BEFORE_MIN_QUANTIY,
+            Constants.WORDS_BEFORE_MAX_QUANTIY
         )
-        sentence += self._gerate_ipsum(ipsumWords, True)
-        
-        sentence += services.constants._CRUZEIRO_WORDS[
-            randint(0, len(services.constants._CRUZEIRO_WORDS)-1)
+        sentence += self.__gerate_ipsum(ipsum_words, True)
+
+        sentence += Constants.CRUZEIRO_WORDS[
+            randint(0, len(Constants.CRUZEIRO_WORDS)-1)
         ] + " "
-        
-        ipsumWords = randint(
-            services.constants._WORDS_AFTER_MIN_QUANTIY,
-            services.constants._WORDS_AFTER_MAX_QUANTIY
+
+        ipsum_words = randint(
+            Constants.WORDS_AFTER_MIN_QUANTIY,
+            Constants.WORDS_AFTER_MAX_QUANTIY
         )
-        sentence += self._gerate_ipsum(ipsumWords, False)
-        
+        sentence += self.__gerate_ipsum(ipsum_words, False)
+
         return sentence
-    
-    def _gerate_ipsum(self, quantityWords: int, isBefore: bool) -> str:
+
+    def __gerate_ipsum(self, quantity_words: int, is_before: bool) -> str:
         ipsum = ""
-        for i in range(quantityWords):
-            if i == 0 and isBefore:
-                ipsum += services.constants._IPSUM_WORDS[
-                    randint(0, len(services.constants._IPSUM_WORDS)-1)
+        for i in range(quantity_words):
+            if i == 0 and is_before:
+                ipsum += Constants.IPSUM_WORDS[
+                    randint(0, len(Constants.IPSUM_WORDS)-1)
                 ].capitalize() + " "
                 continue
-            
-            if i == quantityWords-1 and isBefore == False:
-                ipsum += services.constants._IPSUM_WORDS[
-                    randint(0, len(services.constants._IPSUM_WORDS)-1)
+
+            if i == quantity_words-1 and not is_before:
+                ipsum += Constants.IPSUM_WORDS[
+                    randint(0, len(Constants.IPSUM_WORDS)-1)
                 ] + "."
                 continue
 
-            ipsum += services.constants._IPSUM_WORDS[
-                randint(0, len(services.constants._IPSUM_WORDS)-1)
+            ipsum += Constants.IPSUM_WORDS[
+                randint(0, len(Constants.IPSUM_WORDS)-1)
             ] + " "
         return ipsum

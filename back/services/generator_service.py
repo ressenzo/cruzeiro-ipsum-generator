@@ -1,8 +1,17 @@
+from abc import ABC, abstractmethod
 import services.constants
 from random import randint
 
-class GeneratorService:
+class IGeneratorService(ABC):
+    @abstractmethod
     def generate_paragraphs(self, quantity: int) -> list[str] | str:
+        pass
+
+class GeneratorService(IGeneratorService):
+    def generate_paragraphs(self, quantity: int) -> list[str] | str:
+        if not isinstance(quantity, int):
+            return services.constants._QUANTITY_INVALID_TYPE_ERROR_MESSAGE
+
         if quantity < services.constants._PARAGRAPHS_MIN_QUANTITY:
             return services.constants._PARAGRAPHS_MIN_QUANTITY_ERROR_MESSAGE
         

@@ -1,12 +1,17 @@
 from services.generator_service import GeneratorService
 from services.constants import _CRUZEIRO_WORDS, _IPSUM_WORDS
 
-def test_return_empty_when_quantity_is_less_than_1():
+def test_return_message_when_quantity_is_not_a_number():
+    gs = GeneratorService()
+    message = gs.generate_paragraphs("3")
+    assert message == "Invalid quantity value"
+
+def test_return_message_when_quantity_is_less_than_1():
     gs = GeneratorService()
     message = gs.generate_paragraphs(0)
     assert message == "Paragraphs min len is 1"
 
-def test_return_error_when_quantity_is_greater_than_10():
+def test_return_message_when_quantity_is_greater_than_10():
     gs = GeneratorService()
     message = gs.generate_paragraphs(11)
     assert message == "Paragraphs max len is 10"

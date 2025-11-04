@@ -59,6 +59,8 @@ _CRUZEIRO_WORDS: list[str] = [
     'raposa'
 ]
 
+_QUANTITY_INVALID_TYPE_ERROR_MESSAGE = "Invalid quantity value"
+
 _PARAGRAPHS_MIN_QUANTITY = 1
 _PARAGRAPHS_MIN_QUANTITY_ERROR_MESSAGE = "Paragraphs min len is 1"
 

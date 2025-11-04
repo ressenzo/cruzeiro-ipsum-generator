@@ -1,6 +1,6 @@
 from flask import Flask
 
-from back.services.generator_service import GeneratorService
+from services.generator_service import GeneratorService
 from controllers.generator_controller import create_generator_routes
 
 def create_app():

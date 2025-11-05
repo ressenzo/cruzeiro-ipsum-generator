@@ -1,16 +1,21 @@
-#"""GeneratorService"""
+"""GeneratorService"""
+
 from abc import ABC, abstractmethod
 from random import randint
-
 from services.constants import Constants
 
 
+# pylint: disable=R0903
 class IGeneratorService(ABC):
+    """Contract of GeneratorService"""
     @abstractmethod
     def generate_paragraphs(self, quantity: int) -> list[str] | str:
+        """Generates paragraphs based on quantity"""
 
 
+# pylint: disable=R0903
 class GeneratorService(IGeneratorService):
+    """Implementation of GeneratorService"""
 
     def generate_paragraphs(self, quantity: int) -> list[str] | str:
         if not isinstance(quantity, int):

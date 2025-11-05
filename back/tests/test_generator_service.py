@@ -1,26 +1,32 @@
+"""Tests of GeneratorService"""
+
 from services.constants import Constants
 from services.generator_service import GeneratorService
 
 
 def test_return_message_when_quantity_is_not_a_number():
+    """Test when quantity is not of int type"""
     gs = GeneratorService()
     message = gs.generate_paragraphs("3")
     assert message == "Invalid quantity value"
 
 
 def test_return_message_when_quantity_is_less_than_1():
+    """Test when quantity is less than 1"""
     gs = GeneratorService()
     message = gs.generate_paragraphs(0)
     assert message == "Paragraphs min len is 1"
 
 
 def test_return_message_when_quantity_is_greater_than_10():
+    """Test when quantity is greater than 10"""
     gs = GeneratorService()
     message = gs.generate_paragraphs(11)
     assert message == "Paragraphs max len is 10"
 
 
 def test_return_paragraphs():
+    """Test generated paragraphs"""
     gs = GeneratorService()
     paragraphs = gs.generate_paragraphs(2)
     assert isinstance(paragraphs, list)

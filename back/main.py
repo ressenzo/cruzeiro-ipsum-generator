@@ -1,9 +1,8 @@
-#"""Main entrypoint"""
+"""Main entrypoint"""
 
 from flask import Flask
-
-from services.generator_service import GeneratorService
 from controllers.generator_controller import create_generator_routes
+from services.generator_service import GeneratorService
 
 
 def __create_app():

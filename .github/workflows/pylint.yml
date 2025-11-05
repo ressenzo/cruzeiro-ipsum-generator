@@ -24,14 +24,14 @@ jobs:
       
       - name: Run Pylint with minimum score
         run: |
-          # Run pylint and save full output
-          pylint $(git ls-files '*.py') > pylint_output.txt
+          # Run pylint and save output silently
+          pylint $(git ls-files '*.py') > pylint_output.txt 2>&1
           
-          # Extract score from output
+          # Extract score
           SCORE=$(sed -n 's/.*Your code has been rated at \([0-9.]*\).*/\1/p' pylint_output.txt)
           echo "Pylint score: $SCORE"
           
-          # Fail if score < 8 and show full report again
+          # If score is below threshold, show report and fail
           if (( $(echo "$SCORE < 8.0" | bc -l) )); then
             echo "❌ Pylint score below 8.0"
             echo "----- Pylint Report -----"

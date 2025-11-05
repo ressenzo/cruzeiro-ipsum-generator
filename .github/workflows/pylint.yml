@@ -24,8 +24,8 @@ jobs:
       
       - name: Run Pylint with minimum score
         run: |
-          # Run pylint and save output silently
-          pylint $(git ls-files '*.py') > pylint_output.txt 2>&1
+          # Run pylint and save output but don't stop on non-zero
+          pylint $(git ls-files '*.py') > pylint_output.txt 2>&1 || true
           
           # Extract score
           SCORE=$(sed -n 's/.*Your code has been rated at \([0-9.]*\).*/\1/p' pylint_output.txt)

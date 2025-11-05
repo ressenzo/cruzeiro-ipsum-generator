@@ -1,9 +1,7 @@
-"""Constants"""
+#"""Constants"""
 
 
-# pylint: disable=R0903
 class Constants:
-    """Constants values used on service module"""
     IPSUM_WORDS: list[str] = [
         'lorem',
         'ipsum',

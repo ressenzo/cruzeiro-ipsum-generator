@@ -1,4 +1,4 @@
-"""GeneratorController"""
+#"""GeneratorController"""
 
 from flask import Blueprint, jsonify
 from services.generator_service import IGeneratorService
@@ -8,7 +8,6 @@ generator_bp = Blueprint("generator", __name__)
 
 
 def create_generator_routes(generator_service: IGeneratorService):
-    """Route to generate paragraphs"""
     @generator_bp.route("/paragraphs/<int:quantity>")
     def generate_paragraphs(quantity: int):
         paragraph_result = generator_service.generate_paragraphs(quantity)

@@ -1,7 +1,7 @@
 """GeneratorService"""
 
 from abc import ABC, abstractmethod
-from random import randint
+from random import randint, choice
 from services.constants import Constants
 
 
@@ -48,25 +48,23 @@ class GeneratorService(IGeneratorService):
     def _generate_sentence(self) -> str:
         sentence = ""
 
-        ipsum_words = randint(
+        quantity_ipsum_words = randint(
             Constants.WORDS_BEFORE_MIN_QUANTIY,
             Constants.WORDS_BEFORE_MAX_QUANTIY
         )
-        sentence += self._gerate_ipsum(ipsum_words, True)
+        sentence += self._generate_ipsum(quantity_ipsum_words, True)
 
-        sentence += Constants.CRUZEIRO_WORDS[
-            randint(0, len(Constants.CRUZEIRO_WORDS)-1)
-        ] + " "
+        sentence += choice(Constants.CRUZEIRO_WORDS) + " "
 
-        ipsum_words = randint(
+        quantity_ipsum_words = randint(
             Constants.WORDS_AFTER_MIN_QUANTIY,
             Constants.WORDS_AFTER_MAX_QUANTIY
         )
-        sentence += self._gerate_ipsum(ipsum_words, False)
+        sentence += self._generate_ipsum(quantity_ipsum_words, False)
 
         return sentence
 
-    def _gerate_ipsum(self, quantity_words: int, is_before: bool) -> str:
+    def _generate_ipsum(self, quantity_words: int, is_before: bool) -> str:
         ipsum = ""
         for i in range(quantity_words):
             if i == 0 and is_before:

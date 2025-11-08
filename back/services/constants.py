@@ -1,10 +1,13 @@
 """Constants"""
 
 
+from typing import Final
+
+
 # pylint: disable=R0903
 class Constants:
     """Constants values used on service module"""
-    IPSUM_WORDS: list[str] = [
+    IPSUM_WORDS: Final[list[str]] = [
         'lorem',
         'ipsum',
         'dolor',
@@ -54,7 +57,7 @@ class Constants:
         'adipiscing'
     ]
 
-    CRUZEIRO_WORDS: list[str] = [
+    CRUZEIRO_WORDS: Final[list[str]] = [
         'maior de minas',
         'cabuloso',
         'tríplice coroa',
@@ -65,19 +68,19 @@ class Constants:
         'raposa'
     ]
 
-    QUANTITY_INVALID_TYPE_ERROR_MESSAGE = "Invalid quantity value"
+    QUANTITY_INVALID_TYPE_ERROR_MESSAGE: Final[str] = "Invalid quantity value"
 
-    PARAGRAPHS_MIN_QUANTITY = 1
-    PARAGRAPHS_MIN_QUANTITY_ERROR_MESSAGE = "Paragraphs min len is 1"
+    PARAGRAPHS_MIN_QUANTITY: Final[int] = 1
+    PARAGRAPHS_MIN_QUANTITY_ERROR_MESSAGE: Final[str] = "Paragraphs min len is 1"
 
-    PARAGRAPHS_MAX_QUANTITY = 10
-    PARAGRAPHS_MAX_QUANTITY_ERROR_MESSAGE = "Paragraphs max len is 10"
+    PARAGRAPHS_MAX_QUANTITY: Final[int] = 10
+    PARAGRAPHS_MAX_QUANTITY_ERROR_MESSAGE: Final[str] = "Paragraphs max len is 10"
 
-    SENTENCES_MIN_QUANTITY = 1
-    SENTENCES_MAX_QUANTITY = 10
+    SENTENCES_MIN_QUANTITY: Final[int] = 1
+    SENTENCES_MAX_QUANTITY: Final[int] = 10
 
-    WORDS_BEFORE_MIN_QUANTIY = 1
-    WORDS_BEFORE_MAX_QUANTIY = 5
+    WORDS_BEFORE_MIN_QUANTIY: Final[int] = 1
+    WORDS_BEFORE_MAX_QUANTIY: Final = 5
 
-    WORDS_AFTER_MIN_QUANTIY = 1
-    WORDS_AFTER_MAX_QUANTIY = 5
+    WORDS_AFTER_MIN_QUANTIY: Final[int] = 1
+    WORDS_AFTER_MAX_QUANTIY: Final[int] = 5

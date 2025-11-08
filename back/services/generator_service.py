@@ -29,10 +29,10 @@ class GeneratorService(IGeneratorService):
 
         paragraphs = []
         for _ in range(quantity):
-            paragraphs.append(self.__generate_paragraph())
+            paragraphs.append(self._generate_paragraph())
         return paragraphs
 
-    def __generate_paragraph(self) -> str:
+    def _generate_paragraph(self) -> str:
         sentences_per_paragraph = randint(
             Constants.SENTENCES_MIN_QUANTITY,
             Constants.SENTENCES_MAX_QUANTITY
@@ -40,19 +40,19 @@ class GeneratorService(IGeneratorService):
         paragraph = ""
         for i in range(sentences_per_paragraph):
             if i == sentences_per_paragraph-1:
-                paragraph += self.__generate_sentence() + ""
+                paragraph += self._generate_sentence() + ""
             else:
-                paragraph += self.__generate_sentence() + " "
+                paragraph += self._generate_sentence() + " "
         return paragraph
 
-    def __generate_sentence(self) -> str:
+    def _generate_sentence(self) -> str:
         sentence = ""
 
         ipsum_words = randint(
             Constants.WORDS_BEFORE_MIN_QUANTIY,
             Constants.WORDS_BEFORE_MAX_QUANTIY
         )
-        sentence += self.__gerate_ipsum(ipsum_words, True)
+        sentence += self._gerate_ipsum(ipsum_words, True)
 
         sentence += Constants.CRUZEIRO_WORDS[
             randint(0, len(Constants.CRUZEIRO_WORDS)-1)
@@ -62,11 +62,11 @@ class GeneratorService(IGeneratorService):
             Constants.WORDS_AFTER_MIN_QUANTIY,
             Constants.WORDS_AFTER_MAX_QUANTIY
         )
-        sentence += self.__gerate_ipsum(ipsum_words, False)
+        sentence += self._gerate_ipsum(ipsum_words, False)
 
         return sentence
 
-    def __gerate_ipsum(self, quantity_words: int, is_before: bool) -> str:
+    def _gerate_ipsum(self, quantity_words: int, is_before: bool) -> str:
         ipsum = ""
         for i in range(quantity_words):
             if i == 0 and is_before:

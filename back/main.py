@@ -5,7 +5,7 @@ from controllers.generator_controller import create_generator_routes
 from services.generator_service import GeneratorService
 
 
-def __create_app():
+def _create_app():
     flask = Flask(__name__)
     generator_service = GeneratorService()
     flask.register_blueprint(
@@ -15,5 +15,5 @@ def __create_app():
 
 
 if __name__ == "__main__":
-    app = __create_app()
+    app = _create_app()
     app.run(debug=True)
